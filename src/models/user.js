@@ -42,6 +42,20 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+// login helper function
+userSchema.statics.findByCredentials = async (email, password) => {
+    const user = await User.findOne({ email }) //  using shorthand notation, this equals User.findOne({ email }) 
+
+    if(!user) { throw new Error('Unable to login'); }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if(!isMatch) { throw new Error('Unable to login'); }
+
+    return user;
+}
+
+// hashing password before saving
 userSchema.pre('save', async function (next) {
     console.log('save message')
 
