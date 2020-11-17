@@ -1,6 +1,6 @@
 # Task Manager App
 
-Currently undewr development.
+Currently under development.
 
 This project creates a backend REST API for a task managing app, the technologies under used are Node.js, 
 Express.js, MongoDB, and Mongoose.
